@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  --aubergine: #3b1238;
+  --aubergine-deep: #210b1f;
+  --aubergine-soft: #5a2a55;
+  --cream: #f6f0e4;
+  --cream-dark: #ebe1cf;
+  --paper: #fffbf4;
+  --cocoa: #5b3426;
+  --cocoa-soft: #8a5a42;
+  --yellow: #f2c014;
+  --yellow-deep: #c99708;
+  --mint: #2f8f82;
+  --mint-soft: #d7efe9;
+  --ink: #1c1214;
+  --ink-soft: #4a3c3a;
+  --line: rgba(91, 52, 38, 0.18);
+  --radius: 1.25rem;
+}
+
+@theme inline {
+  --color-aubergine: var(--aubergine);
+  --color-aubergine-deep: var(--aubergine-deep);
+  --color-aubergine-soft: var(--aubergine-soft);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-paper: var(--paper);
+  --color-cocoa: var(--cocoa);
+  --color-cocoa-soft: var(--cocoa-soft);
+  --color-yellow: var(--yellow);
+  --color-yellow-deep: var(--yellow-deep);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html,
+body {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.font-mono,
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+@keyframes conveyor {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-48px);
+  }
+}
+
+@keyframes sensor-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-conveyor {
+  animation: conveyor 1.8s linear infinite;
+}
+
+.animate-sensor {
+  animation: sensor-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-conveyor,
+  .animate-sensor {
+    animation: none;
+  }
+}
+
+.pause-motion .animate-conveyor,
+.pause-motion .animate-sensor {
+  animation: none;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-enter {
+  animation: hero-enter 0.5s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    animation: none;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 80;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--aubergine-deep);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html.text-large {
+  font-size: 118%;
+}
+html.spacing-roomy button,
+html.spacing-roomy a,
+html.spacing-roomy input,
+html.spacing-roomy select,
+html.spacing-roomy textarea {
+  min-height: 3rem;
+}
+html.spacing-roomy .gap-tight {
+  gap: 1rem;
+}
+
+.composer-dock {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.print-plan {
+  max-width: 720px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
